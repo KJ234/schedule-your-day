@@ -1,5 +1,11 @@
+//WHEN I open the planner
+//THEN the current day is displayed at the top of the calendar
+
 var time = moment();
 $("#currentDay").text(time.format("dddd, MMMM Do YYYY, H:mm a"));
+
+//WHEN I view the timeblocks for that day
+//THEN each timeblock is color coded to indicate whether it is in the past, present, or future
 
 function changeColour() {
   var currentHour = moment().hours();
@@ -17,12 +23,18 @@ function changeColour() {
   });
 }
 
+// WHEN I click the save button for that timeblock
+//THEN the text for that event is saved in local storage
+
 $(".saveBtn").on("click", function () {
   var text = $(this).siblings(".description").val();
   var time = $(this).parent().attr("id");
 
   localStorage.setItem(time, text);
 });
+
+//WHEN I refresh the page
+//THEN the saved events persist
 
 $("#hour9 .description").val(localStorage.getItem("hour9"));
 $("#hour10 .description").val(localStorage.getItem("hour10"));

@@ -6,5 +6,14 @@ function changeColour() {
 
   $(".time-block").each(function () {
     var newHour = parseInt($(this).attr("id").split("hour")[1]);
+
+    if (newHour < currentHour) {
+      $(this).addClass("past");
+    } else if (newHour === currentHour) {
+      $(this).addClass("present");
+    } else {
+      $(this).addClass("future");
+    }
   });
 }
+changeColour();
